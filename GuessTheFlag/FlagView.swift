@@ -7,21 +7,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct FlagView: View {
     
     private var countryNames = Country.names
-    
-    @State private var score = 0
-    @State private var keys = Array(Country.names.keys).shuffled()
-    @State private var values = Array(Country.names.values)
-    @State private var randomNumber = Int.random(in: 0..<3)
-    @State private var totalNumberOfQuestions = 0
-    @State private var showAlert: Bool = false
-    
+    @ObservedObject var flagFunctions = GuessFlagFunctions()
     
     var body: some View {
-        
         
         ZStack {
             //Background Properties
@@ -30,16 +21,19 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .center) {
-                
-                // Score Label Properties
-                Label("Score: \(score)/\(totalNumberOfQuestions)", systemImage: "info.circle")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.black)
-                    .cornerRadius(10)
-                    .frame(maxWidth: .greatestFiniteMagnitude, alignment: .topTrailing)
-                    .padding()
+                HStack {
+                    Spacer()
+                    // Score Label Properties
+                    Label("Score: \(flagFunctions.score)/\(flagFunctions.totalNumberOfQuestions)", systemImage: "info.circle")
+                        .frame(alignment: .center)
+                        .padding()
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                        .padding()
+                    
+                }
                 
                 Spacer()
                 // VStack View Properties
@@ -62,7 +56,7 @@ struct ContentView: View {
                     .clipShape(.capsule)
                     
                     // Label for country name
-                    Label(countryNames[keys[randomNumber]] ?? "", image: "")
+                    Label(countryNames[flagFunctions.countryKeys[flagFunctions.randomNumber]] ?? "", image: "")
                         .font(.title2)
                         .foregroundColor(.black)
                         .fixedSize(horizontal: false, vertical: true)
@@ -71,10 +65,10 @@ struct ContentView: View {
                 VStack {  // Three Button cascade vertically
                     ForEach(0..<3) { index in
                         Button {
-                            flagTapped(index)
+                            flagFunctions.flagTapped(index)
                             
                         } label: {
-                            Image(keys[index])
+                            Image(flagFunctions.countryKeys[index])
                                 .resizable()
                                 .frame(width: 250, height: 150)
                                 .clipShape(.buttonBorder)
@@ -84,51 +78,19 @@ struct ContentView: View {
                 }
                 Spacer()
                 Spacer()
-            }.alert("Bayrak Tahmin Oyunu", isPresented: $showAlert) {
-                Button("Devam", action: askQuestion)
-                Button("Bitir", action: endGame)
-            } message: {
-                Text("Skorunuz \(score)/\(totalNumberOfQuestions) devam etmek istiyor musunuz ?")
             }
-            
+            .alert("Bayrak Tahmin Oyunu", isPresented: $flagFunctions.showAlert) {
+                Button("Devam", action: flagFunctions.askQuestion)
+                Button("Bitir", action: flagFunctions.endGame)
+            } message: {
+                Text("Skorunuz \(flagFunctions.score)/\(flagFunctions.totalNumberOfQuestions) devam etmek istiyor musunuz ?")
+            }
             Spacer()
             Spacer()
         }
- 
-    }
-    
-    
-    func flagTapped(_ number: Int) {
-        
-        totalNumberOfQuestions += 1
-        if number == randomNumber {
-            score += 1
-        }
-        
-        showAlert = (totalNumberOfQuestions%10 == 0) ? true : false
-//        if totalNumberOfQuestions%10  == 0 {
-//            showAlert = true
-//            
-//        } else {
-//            showAlert = false
-//        }
-        randomNumber = Int.random(in: 0..<3)
-        keys.shuffle()
-    }
-    
-    
-    
-    func askQuestion() {
-        
-        keys.shuffle()
-        randomNumber = Int.random(in: 0..<3)
-    }
-    func endGame () {
-        score = 0
-        totalNumberOfQuestions = 0
     }
 }
 
 #Preview {
-    ContentView()
+    FlagView()
 }
