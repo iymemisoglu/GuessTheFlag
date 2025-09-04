@@ -76,7 +76,6 @@ struct Country {
       "fi": "Finlandiya",
       "fj": "Fiji",
       "fk": "Falkland Adaları",
-      "fm": "Mikronezya Federal Devletleri",
       "fo": "Faroe Adaları",
       "fr": "Fransa",
       "ga": "Gabon",

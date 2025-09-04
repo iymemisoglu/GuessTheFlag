@@ -8,14 +8,13 @@
 import SwiftUI
 
 
-class guessFlagFunctions: ObservableObject {
+class GuessFlagFunctions: ObservableObject {
     
-    @State  var score = 0
-    @State  var countryKeys = Array(Country.names.keys).shuffled()
-    @State  var countryValues = Array(Country.names.values)
-    @State  var randomNumber = Int.random(in: 0..<3)
-    @State  var totalNumberOfQuestions = 0
-    @State  var showAlert: Bool = false
+    var score = 0
+    var countryKeys = Array(Country.names.keys).shuffled()
+    var randomNumber = Int.random(in: 0..<3)
+    var totalNumberOfQuestions = 0
+    @Published  var showAlert: Bool = false
     
     func flagTapped(_ number: Int) {
         
@@ -25,12 +24,12 @@ class guessFlagFunctions: ObservableObject {
         }
         
         showAlert = (totalNumberOfQuestions%10 == 0) ? true : false
-//        if totalNumberOfQuestions%10  == 0 {
-//            showAlert = true
-//
-//        } else {
-//            showAlert = false
-//        }
+        //        if totalNumberOfQuestions%10  == 0 {
+        //            showAlert = true
+        //
+        //        } else {
+        //            showAlert = false
+        //        }
         randomNumber = Int.random(in: 0..<3)
         countryKeys.shuffle()
     }
