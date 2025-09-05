@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ScoreLabelView: View {
     
-    
-    @ObservedObject var guessFlagFunctions = GuessFlagFunctions()
+    @Bindable var guessFlagFunctions : GuessFlagViewModel
     
     var body: some View {
         HStack {
@@ -29,6 +28,4 @@ struct ScoreLabelView: View {
     }
 }
 
-#Preview {
-    ScoreLabelView()
-}
+

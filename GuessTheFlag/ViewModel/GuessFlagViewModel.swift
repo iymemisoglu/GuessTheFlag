@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-
-class GuessFlagFunctions: ObservableObject {
-    var country = Country.names
-    var score = 0
-    var countryKeys = Array(Country.names.keys).shuffled()
-    var randomNumber = Int.random(in: 0..<3)
-    var totalNumberOfQuestions = 0
-    @Published var showAlert: Bool = false
+@Observable class GuessFlagViewModel  {
+    
+     var country = Country.names
+     var score = 0
+     var countryKeys = Array(Country.names.keys).shuffled()
+     var randomNumber = Int.random(in: 0..<3)
+     var totalNumberOfQuestions = 0
+     var showAlert: Bool = false
     
     func flagTapped(_ number: Int) {
         

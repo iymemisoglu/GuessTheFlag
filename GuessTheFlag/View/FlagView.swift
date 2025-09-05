@@ -9,8 +9,7 @@ import SwiftUI
 
 struct FlagView: View {
     
-    
-     @ObservedObject var guessFlagFunctions = GuessFlagFunctions()
+    @State  var guessFlagViewModel = GuessFlagViewModel()
     
     var body: some View {
         
@@ -21,18 +20,18 @@ struct FlagView: View {
                 .ignoresSafeArea()
 
             VStack(alignment: .center) {
-                ScoreLabelView()
+                ScoreLabelView(guessFlagFunctions: guessFlagViewModel)
                 Spacer()
-                QuestionAndCountryLabelView()
-                ButtonView()
+                QuestionAndCountryLabelView(guessFlagFunctions: guessFlagViewModel)
+                ButtonView(guessFlagFunctions: guessFlagViewModel)
                 Spacer()
                 Spacer()
             }
-            .alert("Bayrak Tahmin Oyunu", isPresented: $guessFlagFunctions.showAlert) {
-                Button("Devam", action: guessFlagFunctions.askQuestion)
-                Button("Bitir", action: guessFlagFunctions.endGame)
+            .alert("Bayrak Tahmin Oyunu", isPresented: $guessFlagViewModel.showAlert) {
+                Button("Devam", action: guessFlagViewModel.askQuestion)
+                Button("Bitir", action: guessFlagViewModel.endGame)
             } message: {
-                Text("Skorunuz \(guessFlagFunctions.score)/\(guessFlagFunctions.totalNumberOfQuestions) devam etmek istiyor musunuz ?")
+                Text("Skorunuz \(guessFlagViewModel.score)/\(guessFlagViewModel.totalNumberOfQuestions) devam etmek istiyor musunuz ?")
             }
             Spacer()
             Spacer()

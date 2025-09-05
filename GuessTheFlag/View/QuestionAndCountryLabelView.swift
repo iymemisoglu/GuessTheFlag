@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionAndCountryLabelView: View {
     
-    @ObservedObject var guessFlagFunctions = GuessFlagFunctions()
+    @Bindable var guessFlagFunctions : GuessFlagViewModel
     
     var body: some View {
         VStack {
@@ -39,6 +39,3 @@ struct QuestionAndCountryLabelView: View {
     }
 }
 
-#Preview {
-    QuestionAndCountryLabelView()
-}

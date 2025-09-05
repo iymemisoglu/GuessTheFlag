@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ButtonView: View {
     
-    @ObservedObject var guessFlagFunctions = GuessFlagFunctions()
+    @Bindable var guessFlagFunctions : GuessFlagViewModel
     
     var body: some View {
         VStack {  // Three Button cascade vertically
@@ -29,6 +29,3 @@ struct ButtonView: View {
     }
 }
 
-#Preview {
-    ButtonView()
-}
