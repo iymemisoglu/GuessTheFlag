@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionAndCountryLabelView: View {
     
-    @Bindable var guessFlagFunctions : GuessFlagViewModel
+    @Bindable var guessFlagViewModel : GuessFlagViewModel
     
     var body: some View {
         VStack {
@@ -31,7 +31,7 @@ struct QuestionAndCountryLabelView: View {
             .clipShape(.capsule)
             
             // Label for country name
-            Label(guessFlagFunctions.country[guessFlagFunctions.countryKeys[guessFlagFunctions.randomNumber]]! , image: "")
+            Label(guessFlagViewModel.country[guessFlagViewModel.countryKeys[guessFlagViewModel.randomNumber]]! , image: "")
                 .font(.title2)
                 .foregroundColor(.black)
                 .fixedSize(horizontal: false, vertical: true)

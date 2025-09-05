@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ButtonView: View {
     
-    @Bindable var guessFlagFunctions : GuessFlagViewModel
+    @Bindable var guessFlagViewModel : GuessFlagViewModel
     
     var body: some View {
         VStack {  // Three Button cascade vertically
             ForEach(0..<3) { index in
                 Button {
-                    guessFlagFunctions.flagTapped(index)
+                    guessFlagViewModel.flagTapped(index)
                     
                 } label: {
-                    Image(guessFlagFunctions.countryKeys[index])
+                    Image(guessFlagViewModel.countryKeys[index])
                         .resizable()
                         .frame(width: 250, height: 150)
                         .clipShape(.buttonBorder)

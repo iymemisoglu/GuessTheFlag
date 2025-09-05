@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ScoreLabelView: View {
     
-    @Bindable var guessFlagFunctions : GuessFlagViewModel
+    @Bindable var guessFlagViewModel : GuessFlagViewModel
     
     var body: some View {
         HStack {
             Spacer()
             // Score Label Properties
-            Label("Score: \(guessFlagFunctions.score)/\(guessFlagFunctions.totalNumberOfQuestions)", systemImage: "info.circle")
+            Label("Score: \(guessFlagViewModel.score)/\(guessFlagViewModel.totalNumberOfQuestions)", systemImage: "info.circle")
                 .frame(alignment: .center)
                 .padding()
                 .font(.headline)

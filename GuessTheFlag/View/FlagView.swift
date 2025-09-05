@@ -20,10 +20,10 @@ struct FlagView: View {
                 .ignoresSafeArea()
 
             VStack(alignment: .center) {
-                ScoreLabelView(guessFlagFunctions: guessFlagViewModel)
+                ScoreLabelView(guessFlagViewModel: guessFlagViewModel)
                 Spacer()
-                QuestionAndCountryLabelView(guessFlagFunctions: guessFlagViewModel)
-                ButtonView(guessFlagFunctions: guessFlagViewModel)
+                QuestionAndCountryLabelView(guessFlagViewModel: guessFlagViewModel)
+                ButtonView(guessFlagViewModel: guessFlagViewModel)
                 Spacer()
                 Spacer()
             }
